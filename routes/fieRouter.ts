@@ -45,7 +45,18 @@ router.post('/upload', upload.single('fileData'), async (req, res) => {
     } catch (error) {
         return res.status(500).json({ message: "Server Error", error: error });
     }
-})
+});
+
+router.get('/:fileId', async (req, res) => {
+    try {
+        const { fileId } = req.params;
+        const fileData = await FileModel.findById(fileId);
+        if (!fileData) return res.status(404).json({ message: "File not found" });
+        return res.status(200).json({ message: "Download the File", file: fileData });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error: ", error })
+    }
+});
 
 
 export default router;
