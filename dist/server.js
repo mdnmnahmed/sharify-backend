@@ -26,7 +26,7 @@ cloudinary_1.v2.config({
 //Routes
 app.use('/api/files', fieRouter_1.default);
 app.use('/', (req, res) => res.send("Welcome to Sharify"));
-const PORT = process.env.port;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('Sharify Server Stated at: ', PORT);
 });
